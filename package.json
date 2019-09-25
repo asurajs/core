@@ -1,0 +1,51 @@
+{
+  "name": "@asurajs/core",
+  "version": "0.0.0",
+  "description": "Core functionality of asurajs",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel src --out-dir ./ --ignore \"**/*.test.js\"",
+    "cleanup": "rm `find src/*.js -not -name '*.test.js' -printf '%f\n'`",
+    "postpublish": "npm run cleanup",
+    "format": "prettier --write \"src/**/*.js\"",
+    "format:check": "prettier --list-different \"src/**/*.js\"",
+    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'",
+    "lint:check": "eslint -c .eslintrc.json src/**/*.js",
+    "lint:watch": "onchange \"src/**/*.js\" -- sh -c 'clear; npx eslint -c .eslintrc.json {{changed}} && echo LINTER OK'",
+    "test": "NODE_ENV=test mocha --exit --require @babel/register init.test.js \"src/**/*.test.js\"",
+    "test:watch": "npx onchange \"src/**/*.js\" -- sh -c 'clear; NODE_ENV=test mocha --exit --require @babel/register init.test.js `node -p \"process.argv[1].replace(/^(.*?)(?:\\.test)?(\\.js)$/,\\\"\\\\$1.test\\\\$2\\\")\" {{changed}}`' && echo TEST OK",
+    "test:coverage": "NODE_ENV=test nyc --all npm run test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-syntax-pipeline-operator": "^7.5.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-istanbul": "^5.2.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-mocha": "^6.1.1",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "onchange": "^6.1.0",
+    "prettier": "^1.18.2",
+    "sinon": "^7.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asurajs/core.git"
+  },
+  "author": "László Kardinál",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asurajs/core/issues"
+  },
+  "homepage": "https://github.com/asurajs/core#readme"
+}

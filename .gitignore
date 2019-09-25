@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+# Compiled source files
+/*.js
+
+# Temporary Folder
+tmp
+
+# Development script
+dev.sh

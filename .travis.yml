@@ -1,0 +1,23 @@
+sudo: false
+language: node_js
+node_js:
+- '8'
+cache:
+  directories:
+  - node_modules
+before_install:
+- npm update
+install:
+- npm install
+jobs:
+  include:
+  - stage: Tests
+    name: Check format
+    script: npm run format:check
+  - name: Linter
+    script: npm run lint:check
+  - name: Unit tests
+    script: npm run test:coverage
+notifications:
+  slack:
+    secure: XsUzsuczfpjp/dIQMeSSgs0KpxI2PnB0Qpof6FPio+Z9C8Vox2PVK2NQwDB9JuSi6fOScrDc40qNhJxXB7CAjGGgzM+/5oRy58vrRp5+rWBpqV/TZmHsqSBhL5R0SOeMp/lFpWelclT6NyFElCRzl2Ad30S33T6zaT1CNp8iwL9EQnkq5TjnBwI2tuB0kphQijc7ZoK07rb1idGLRd0HmaN/PvAPqpUwqlI1aUhyDjclcu8pmV0dQ1ilv8+naZzLMZnwvr2/0aCVosV5y4eatofLUBtqDGibdMOOHpGpsKdA7D0C/SHQY2PD+dlzaO+QYmhQwiN86H6oS7+EfbqQdof0rqdPfOcIoiJovhfrZJ6pcVmplhnt8gqMcI0fOsFiVv1GZ2zBcDlG4plmZ2XPiTHBzu+X+9zw7mJUB7TjRAhNA3vvTRKw+njNzqVnnc74wyTQaKEjG/lccV1d9Vy3oEmiP8lJd65k6x4cSkuQWMbvU4QRoE8KlhddzRK9GhTjQr27WQoE6mLkGVBMLn7tkPy2Dn+ioM728S+1An7gCusCoqIxynGg10h2G26w8T8+7phh7OWqQXtzGAQitPAEk8/d4YBp7kS1HI84PUXfbPztUTW1z/7ZWWpHqAtTOrC+HoWrJTov6huDAu7GLSi5cpVLXu7no1Pwq2CbDm0sbj4=

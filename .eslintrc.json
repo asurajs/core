@@ -1,0 +1,30 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["chai-friendly", "mocha"],
+  "globals": {
+    "process": true,
+    "window": true
+  },
+  "rules": {
+    "no-undefined": 0,
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "mocha/no-exclusive-tests": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js"],
+      "globals": {
+        "describe": true,
+        "it": true,
+        "before": true,
+        "beforeEach": true,
+        "after": true,
+        "afterEach": true,
+        "sinon": true,
+        "expect": true
+      }
+    }
+  ]
+}
